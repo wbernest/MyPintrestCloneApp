@@ -1,27 +1,59 @@
-.thing-form {
-  margin: 20px 0;
-}
+main {
+  .container{
+    margin-top: 20px;
+  }
+  .search-form {
+    margin-bottom: 10px;
+  }
 
-#banner {
-  border-bottom: none;
-  margin-top: -20px;
-}
+  .create-vote-form {
+    margin: 30px;
+    text-align: center;
+  }
+  ul{
+    overflow: auto;
+    max-height: 300px;
+  }
+  .badge{
+    float: right;
+  }
+  div.panel-body{
+    img{
+      width: 30%;
+      height: auto;
+      max-height: 200px;
+      position: relative;
+      float: left;
+    }
+    div.row{
+      position: relative;
+      float: right;
+      width: 70%
+    }
+  }
 
-#banner h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
-}
+  .book{
+    display: inline-block;
+    padding: 2px;
+    height: 200px;
+    width: 130px;
+    img{
+        height: 196px;
+        width: 126px;
+        position: relative;
+        left: 0px;
+        top: 0px;
+    }
+    a{
+      left: 110px;
+      top: -195px;
+      position: relative;
+    }
 
-.hero-unit {
-  position: relative;
-  padding: 30px 15px;
-  color: #F5F5F5;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: #4393B9;
-}
+  }
 
-.navbar-text {
-  margin-left: 15px;
+  .scroll{
+    overflow-y: auto;
+  }
+
 }
