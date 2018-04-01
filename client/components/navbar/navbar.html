@@ -14,6 +14,8 @@
         <li ng-repeat="item in $ctrl.menu" ui-sref-active="active">
             <a ui-sref="{{item.state}}">{{item.title}}</a>
         </li>
+        <li ng-show="$ctrl.isLoggedIn()" ui-sref-active="active"><a ui-sref="mymemes">My Memes</a></li>
+        <li ng-show="$ctrl.isLoggedIn()" ui-sref-active="active"><a ui-sref="myfavorites">My Likes</a></li>
         <li ng-show="$ctrl.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
       </ul>
 

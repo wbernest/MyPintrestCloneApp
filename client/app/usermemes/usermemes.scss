@@ -1,0 +1,30 @@
+usermemes {
+    .container{
+      margin-top: 20px;
+    }
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      border-radius: 5px; /* 5px rounded corners */
+      width: 150px;
+      float: left;
+      margin: 2px;
+      position: relative;
+          /* Add rounded corners to the top left and the top right corner of the image */
+      img {
+        border-radius: 5px 5px 0 0;
+        width: 100%; 
+      }
+      .like{
+        position: absolute;
+        bottom: 2px;
+        right: 5px;
+      }
+  
+    }
+  
+    .scroll{
+      overflow-y: auto;
+    }
+  
+  }

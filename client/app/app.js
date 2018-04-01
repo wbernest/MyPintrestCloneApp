@@ -15,7 +15,7 @@ import 'angular-validation-match';
 import {
   routeConfig
 } from './app.config';
-
+import modal from '../components/modal/modal.service';
 import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
@@ -26,11 +26,14 @@ import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
 import banner from './banner/banner.directive';
+import mymemes from './mymemes/mymemes.component';
+import usermemes from './usermemes/usermemes.component';
+import myfavorites from './myfavorites/myfavorites.component';
 import './app.scss';
 
 angular.module('myPintrestCloneAppApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io',
   uiRouter, uiBootstrap, _Auth, account, admin, 'validation.match', navbar, footer, main,
-  constants, socket, util, banner
+  constants, socket, util, banner, mymemes, usermemes, modal, myfavorites
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

@@ -2,7 +2,8 @@
 
 import angular from 'angular';
 
-export function Modal($rootScope, $uibModal) {
+export function Modal($rootScope, $uibModal, $http, Auth) {
+  'ngInject';
   /**
    * Opens a modal
    * @param  {Object} scope      - an object to be merged with modal's scope
@@ -21,9 +22,93 @@ export function Modal($rootScope, $uibModal) {
     });
   }
 
+  function openMemeModal(scope = {}, modalClass = 'modal-default') {
+    var modalScope = $rootScope.$new();
+
+    angular.extend(modalScope, scope);
+
+    return $uibModal.open({
+      template: require('./mememodal.html'),
+      windowClass: modalClass,
+      scope: modalScope
+    });
+  }
+
+
   // Public API here
   return {
 
+    /* Meme modals*/
+    meme:{
+      /**
+       * Create a function to open a delete confirmation modal (ex. ng-click='myModalFn(name, arg1, arg2...)')
+       * @param  {Function} del - callback, ran when delete is confirmed
+       * @return {Function}     - the function to open the modal (ex. myModalFn)
+       */
+      add(del = angular.noop) {
+        /**
+         * Open a delete confirmation modal
+         * @param  {String} name   - name or info to show on modal
+         * @param  {All}           - any additional args are passed straight to del callback
+         */
+        return function(...args) {
+          var slicedArgs = Reflect.apply(Array.prototype.slice, args, []);
+          var name = slicedArgs.shift();
+          var addModal;
+
+          addModal = openMemeModal({
+            modal: {
+              dismissable: true,
+              title: 'Link To A Meme',
+              html: `
+                  <label>Name</label>
+                  <input type="text" id="memeName"/>
+                  <label>Link</label>
+                  <input type="text" id="memeLink"/>`,
+              buttons: [{
+                classes: 'btn-primary',
+                text: 'Add',
+                disabled(){
+                  if(
+                    document.getElementById('memeName').value.length > 0 &&
+                    document.getElementById('memeLink').value.length > 0
+                  )
+                    return false;
+                  else
+                    return true;
+                },
+                click(modal, e) {
+                  Auth.getCurrentUser(user =>{
+                    var meme ={
+                      name: document.getElementById('memeName').value,
+                      link : document.getElementById('memeLink').value,
+                      userid: user._id,
+                      username: user.name
+                    }
+                    $http.post('/api/memes', meme);
+                    addModal.close(e);
+  
+                  })
+                }
+              }, {
+                classes: 'btn-default',
+                text: 'Cancel',
+                disabled(){
+                  return false;
+                },
+                click(modal, e) {
+                  addModal.dismiss(e);
+                }
+              }]
+            },
+          }, 'modal-default');
+
+          addModal.result.then(function(event) {
+            Reflect.apply(del, event, slicedArgs);
+          });
+        };
+      }
+    },
     /* Confirmation modals */
     confirm: {
 
@@ -39,7 +124,7 @@ export function Modal($rootScope, $uibModal) {
          * @param  {All}           - any additional args are passed straight to del callback
          */
         return function(...args) {
-          var slicedArgs = Reflect.apply(Array.prototype.slice, args);
+          var slicedArgs = Reflect.apply(Array.prototype.slice, args, []);
           var name = slicedArgs.shift();
           var deleteModal;
 

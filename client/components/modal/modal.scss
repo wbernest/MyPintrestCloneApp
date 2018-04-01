@@ -23,3 +23,13 @@
 .modal-danger .modal-header {
   background: $brand-danger;
 }
+
+#preview{
+  height: 200px;
+  img{
+    max-height: 200px;
+    max-width: 300px;
+    width: auto;
+    height: auto;
+  }
+}

@@ -1,15 +1,15 @@
-<banner text="You Can Haz Memes!"></banner>
+<banner text="{{usermemesCtrl.user.name}} Memes!"></banner>
 
 <div class="container">
     <!-- Trigger the modal with a button -->
-    <div class="grid scroll"  ng-style="{'max-height': '{{$ctrl.calculateRemainingHeight()}}px'}">
-        <div class="card grid-item" ng-repeat="meme in $ctrl.memes">
+    <div class="grid scroll"  ng-style="{'max-height': '{{usermemesCtrl.calculateRemainingHeight()}}px'}">
+        <div class="card grid-item" ng-repeat="meme in usermemesCtrl.memes">
             <img ng-src="{{meme.link}}" onerror="this.onerror=null;this.src='/assets/images/cattie.jpg';" alt="Avatar">
             <div style="padding-left: 5px">
                 <h4><b>{{meme.name}}</b></h4> 
                 <a ui-sref="usermemes({id: meme.userid})">{{meme.username}}</a> 
             </div>
-            <a ng-if="!meme.like" class="like" title="Like {{meme.name}}" ng-click="$ctrl.likeMeme(meme)" href="#">
+            <a ng-if="!meme.like" class="like" title="Like {{meme.name}}" ng-click="usermemesCtrl.likeMeme(meme)" href="#">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
             </a>
         </div>

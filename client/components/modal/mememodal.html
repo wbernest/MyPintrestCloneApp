@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
+  <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+</div>
+<div class="modal-body">
+  <form>
+      <label>Name</label>
+      <input class="form-control" type="text" id="memeName" ng-model="modal.name" ng-required=""/>
+      <label>Link</label>
+      <input class="form-control" type="text" id="memeLink" ng-model="modal.link">
+      <label>Preview</label>
+      <div class="form-control" id="preview">
+        <img src="{{modal.link}}" onerror="this.src='/assets/images/cattie.jpg';"/>
+      </div>    
+  </form>
+</div>
+<div class="modal-footer">
+  <button ng-repeat="button in modal.buttons" ng-disabled="button.disabled()" ng-class="button.classes" ng-click="button.click(modal, $event)" ng-bind="button.text" class="btn"></button>
+</div>

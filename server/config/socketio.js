@@ -16,6 +16,8 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/favorite/favorite.socket').register(socket);
+  require('../api/meme/meme.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 }
 

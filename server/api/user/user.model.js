@@ -36,7 +36,9 @@ var UserSchema = new Schema({
   },
   provider: String,
   salt: String,
-  twitter: {},
+  twitter: {
+    id_str: String
+  },
   github: {}
 });
 
