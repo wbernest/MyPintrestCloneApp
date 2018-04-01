@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary" ng-click="mymemesCtrl.modal()">Add Meme</button>
     <div class="grid scroll" ng-style="{'max-height': '{{mymemesCtrl.calculateRemainingHeight()}}px'}">
         <div class="card grid-item" ng-repeat="meme in mymemesCtrl.myMemes">
-            <img src="{{meme.link}}" onerror="this.onerror=null;this.src='/assets/images/cattie.jpg';" alt="Avatar">
+            <img ng-src="{{meme.link}}" onerror="this.onerror=null;this.src='/assets/images/cattie.jpg';" alt="Avatar">
             <div style="padding-left: 5px">
                 <h4><b>{{meme.name}}</b></h4> 
             </div>
